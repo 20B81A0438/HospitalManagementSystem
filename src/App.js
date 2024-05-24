@@ -1,26 +1,22 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Doctor from './Doctor';
 import Patient from './Patient';
 import Home from './Home';
 import Navigation from './Navigation';
 import './App.css';
-function App() {
+
+export default function App() {
   return (
-
-    <BrowserRouter>
-      <Navigation />
+    <div>
+      <BrowserRouter>
+      <Navigation/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/doctors" element={<Doctor />} />
-        <Route path="/patients" element={<Patient />} />
-
-
-
+        <Route path="/" element={<Home/>}/>
+        <Route path="/doctors" element={<Doctor/>}/>
+        <Route path="/patient" element={<Patient/>}/>
       </Routes>
-    </BrowserRouter>
-
-
+      </BrowserRouter>
+    </div>
   )
 }
-export default App;

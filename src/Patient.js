@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
 const PatientForm = () => {
   const [patientData, setPatientData] = useState({
     name: '',
@@ -7,25 +8,36 @@ const PatientForm = () => {
     gender: '',
     age: '',
     disease: '',
-    doctorId: null,
-
+    doctor: {
+        id:0
+    }
+      
+    
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPatientData({ ...patientData, [name]: value });
-
+    if (name === 'doctorId') {
+      setPatientData({ ...patientData, doctor: { ...patientData.doctor, id: value } });
+    } else {
+      setPatientData({ ...patientData, [name]: value });
+    }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('https://backendhospital-ji3g.onrender.com/patients', patientData);
-      console.log('patient created:', response.data);
-    }
-    catch(error){
-      console.log('Error creating patient:',error);
-    }
 
+    try {
+
+      const response = await axios.post('http://localhost:8080/patient', patientData);
+
+      console.log('Patient created:', response.data);
+
+    } catch (error) {
+      console.error('Error creating patient:', error);
+    }
   };
+
   return (
     <center>
       <div>
@@ -58,7 +70,7 @@ const PatientForm = () => {
           <br />
           <label>
             Doctor ID:
-            <input type="text" name="doctorId" value={patientData.doctorId} onChange={handleChange} required />
+            <input type="text" name="doctorId" value={patientData.doctor.id} onChange={handleChange} required />
           </label>
           <br />
           <button type="submit">Create Patient</button>
@@ -66,6 +78,6 @@ const PatientForm = () => {
       </div>
     </center>
   );
-
 };
+
 export default PatientForm;
