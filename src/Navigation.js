@@ -6,8 +6,8 @@ const Navigation =() => {
     <nav className="navbar">
       <a id="logo">TRUE<span>CARE +</span></a>
       <Link to="/">Home</Link>
-      <Link to="/doctors">Doctors</Link>
-      <Link to="/patients">Patients</Link>
+      <Link to="/doctor">Doctors</Link>
+      <Link to="/patient">Patients</Link>
     </nav>
   )
 }

@@ -13,7 +13,7 @@ export default function App() {
       <Navigation/>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/doctors" element={<Doctor/>}/>
+        <Route path="/doctor" element={<Doctor/>}/>
         <Route path="/patient" element={<Patient/>}/>
       </Routes>
       </BrowserRouter>

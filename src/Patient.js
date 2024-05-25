@@ -9,10 +9,8 @@ const PatientForm = () => {
     age: '',
     disease: '',
     doctor: {
-        id:0
+      id: 0
     }
-      
-    
   });
 
   const handleChange = (e) => {
@@ -26,16 +24,36 @@ const PatientForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-
-      const response = await axios.post('http://localhost:8080/patient', patientData);
-
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/patient`, patientData);
       console.log('Patient created:', response.data);
-
+      // Reset form after successful submission
+      setPatientData({
+        name: '',
+        weight: '',
+        gender: '',
+        age: '',
+        disease: '',
+        doctor: {
+          id: 0
+        }
+      });
     } catch (error) {
       console.error('Error creating patient:', error);
     }
+  };
+
+  const handleReset = () => {
+    setPatientData({
+      name: '',
+      weight: '',
+      gender: '',
+      age: '',
+      disease: '',
+      doctor: {
+        id: 0
+      }
+    });
   };
 
   return (
@@ -74,6 +92,7 @@ const PatientForm = () => {
           </label>
           <br />
           <button type="submit">Create Patient</button>
+          <button type="button" onClick={handleReset}>Reset</button>
         </form>
       </div>
     </center>
